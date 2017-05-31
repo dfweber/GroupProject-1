@@ -18,7 +18,7 @@
 
 </head>
 <body>
-	<div class="ui container">
+	<div id="container" class="ui container">
 			<h1>DJ's Stream Dream</h1>
 			<br>
 			<form class="ui form">
@@ -30,16 +30,14 @@
 			<br>
 
 			<div id="displaySongs">
-			<!-- link to api mp3 converter -->
+			 <!-- link to api mp3 converter -->
 			<script type="text/javascript" src="http://api.convert2mp3.cc/api.js"></script>
-				<button>
-					<a class="c2m3" href="javascript:convert2mp3('SQzjzStU1RQ')">Artists - Song - Download Now</a>
-				</button><br>
+				<br>
 
 				<table class="ui celled table" id="tableHeader"></table>
 				<table class="ui celled table" id="songTable"></table>			
 			</div>
-			<div id="btnTest"></div>
+			
 
 			<br>
 			<br>
@@ -55,9 +53,7 @@
 	<script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
 
 	<!-- link to jquery -->
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-  	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  	crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 	<!-- link to logic.js file -->
 	<script type="text/javascript" src="logic.js"></script>

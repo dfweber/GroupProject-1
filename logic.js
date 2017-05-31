@@ -12,55 +12,53 @@ $("#enterArtist").on("click", function(event) {
         }).done(function(response) {
         console.log(response);
 
-        // $("#displaySongs").append(JSON.stringify("<h2>" + response.items[0].id.videoId + "</h2>"));
+        $("#songTable").empty();
 
         // Change the HTML
         $("#tableHeader").html(
         "<tr><th> " + "Artist Searched" + 
         "</th><th> " + "Video or Song Name" + 
-        "</th><th> " + "Video Id" + //showing as button for now - need to work on this
+        "</th><th> " + "Click Button to Download" + 
         "</th></tr><br>");
 
-        $("#songTable").append(JSON.stringify(
-        "<tr><td> " + artist + 
-        "</td><td> " + response.items[0].snippet.title + 
-        "</td><td><button>" + response.items[0].id.videoId +
-        "</button></td></tr><br>" +
 
+	    $("#songTable").append(JSON.stringify(
+	    "<tr><td> " + artist + 
+	    "</td><td> " + response.items[0].snippet.title + 
+	    "</td><td><button id='downloadBtn0'></button></td></tr><br>" +
+ 
         "<tr><td> " + artist + 
         "</td><td> " + response.items[1].snippet.title + 
-        "</td><td><button>" + response.items[1].id.videoId +
-        "</button></td></tr><br>" +
+        "</td><td><button id='downloadBtn1'></button></td></tr><br>" +
 
         "<tr><td> " + artist + 
         "</td><td> " + response.items[2].snippet.title + 
-        "</td><td><button>" + response.items[2].id.videoId +
-        "</button></td></tr><br>"
+        "</td><td><button id='downloadBtn2'></button></td></tr><br>"
 
         ));
 
-        //testing button out - not working
-        var t = $("<button><a>");
+	  
+
+        //testing button out - is working
+        var t = $("<a>");
         t.addClass("c2m3");
         t.attr("href","javascript:convert2mp3('" + response.items[0].id.videoId + "')");
         t.text("Download Song");
-        $("#btnTest").append(t);
+        $("#downloadBtn0").append(t);
 
-        var t = $("<button><a>");
+        var t = $("<a>");
         t.addClass("c2m3");
         t.attr("href","javascript:convert2mp3('" + response.items[1].id.videoId + "')");
         t.text("Download Song");
-        $("#btnTest").append(t);
+        $("#downloadBtn1").append(t);
 
-        var t = $("<button><a>");
+        var t = $("<a>");
         t.addClass("c2m3");
         t.attr("href","javascript:convert2mp3('" + response.items[2].id.videoId + "')");
         t.text("Download Song");
-        $("#btnTest").append(t);
+        $("#downloadBtn2").append(t);
 
-
-
-        });      
+        });     
 
 });
 
