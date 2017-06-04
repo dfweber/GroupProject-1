@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>DJ Stream Dream</title>
 
 	<!-- Compiled and minified CSS -->
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css">
@@ -23,6 +23,22 @@
   };
   firebase.initializeApp(config);
 </script>
+
+<style>
+
+	h1 {
+		color: ghostwhite;
+	}
+	.ui.table td, .ui.table th {
+	    background-color: rgba(42, 66, 31, 0.31);
+	}
+
+	.ui.table thead th {
+		background: rgba(174, 160, 179, 0.24);
+	}
+
+</style>
+
 </head>
 <body style="background-color: darkgrey;">
 	<div style="background-image: url('Titanium.jpg'); padding-left: 15px; padding-right: 15px;" class="ui container">
@@ -30,15 +46,34 @@
 			<br>
 			<form class="ui form">
 				<div class="field">
-            		<input type="search" placeholder="Enter song or artist" id="inputValue"><br><br>
-					<button type="submit" class="ui red button" id="submitBtn">Search</button>
+            		<input type="search" placeholder="Enter song or artist" id="inputValue">
+            	</div>
+				<div class="inline fields">
+					<label>Search By:</label>
+					<div class="field">
+						<div class="ui radio checkbox">
+					        <input type="radio" name="frequency" checked="checked" id="artistCheck">
+					        <label>Artist</label>
+					    </div>
+					</div>
+					<div class="field">
+						<div class="ui radio checkbox">
+					        <input type="radio" name="frequency" id="songCheck">
+					        <label>Song</label>
+					    </div>
+					</div>
+				</div>
+            	<br>
+            	<br>
+            	<div class="field">
+					<button type="submit" class="ui red button" style="background: linear-gradient(#e80b0b 28%, #010304 115%)" id="submitBtn">Search</button>
         		</div>
 			</form>
 			<br>
 			
 
 			<br>
-			<span id="videoPlayer"></span>
+			<span id="artistImage"></span>
 			<br>
 			<br>
 			<div class="ui container">
@@ -46,13 +81,13 @@
 				<div class="newTest"></div>
 			</div>
 			
-			<table class="ui red selectable celled table" id="displayHeader">
+			<table class="ui red selectable celled table" style="border-top: 10px solid #DB2828" id="displayHeader">
 				<thead>
 			    	<tr style="background-color: #638CA6;">
 			    		<th>Song Name</th>
 				    	<th>Album</th>
-				    	<th>Click to Play</th>
-				    	<th class="center aligned">Click To Download</th>
+				    	<th>Click to Watch on YouTube</th>
+				    	<th>Click To Download</th>
 			  		</tr>
 			  	</thead>
 			  	<tbody id="displayTable">

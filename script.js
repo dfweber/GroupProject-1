@@ -16,7 +16,6 @@
 //Display band social media information
 
 
-
 $("#submitBtn").on("click", function(event) {
 
 	event.preventDefault();
@@ -80,10 +79,10 @@ $("#submitBtn").on("click", function(event) {
 			$("#displayTable").append(
 				"<tr><td>" + song[i] +
 				"</td><td>" + album[i] +
-				"</td><td class='center aligned'>" + "<input id='videoId' type='image' src='playbutton.png' width='20%'>" +
-				"</td><td class='right aligned'>" + "<button id='downloadBtn' class='ui blue button'></button>" +
+				"</td><td class='center aligned'>" + "<a href='http://www.youtube.com/watch?v=" + tubeId[i] + "' target='_self'><input id='videoId' type='image' src='playbutton.png' width='20%'></a>" +
+				"</td><td class='center aligned'>" + "<button id='downloadBtn' class='ui blue button' style='background: linear-gradient(#22abe9 5%, #010304 100%)'></button>" +
 				"</td></tr>"
-				
+
 				);
 			$("#downloadBtn").attr("id", "downloadBtn" + [i]);
 			$("#videoId").attr("id", "videoId" + [i]);
@@ -95,30 +94,31 @@ $("#submitBtn").on("click", function(event) {
 	    	t.text("Download Song");
 	    	$("#downloadBtn" + [i]).html(t);
 
-
-
-	    	//Creates play button link for each song entry 
-	    	var p = $("<a>");
-	    	// p.attr("src","https://www.youtube.com/embed/" + tubeId[i] + "?controls=0&showinfo=0");
-	    	p.attr("src","https://www.youtube.com/embed/" + tubeId[i]);
-	    	$("#videoId" + [i]).html(p);
-	    	
-	    	
-	    	$("#videoId" + [i]).on("click", function(event) {
-	    		// $("#videoPlayer").html("<iframe width='350' height='197' src='https://www.youtube.com/embed/" + tubeId[i] + "'?controls=0&showinfo=0' frameborder='0' allowfullscreen></iframe>");
-	    		$("#videoPlayer").html("<iframe width='350' height='197' src='https://www.youtube.com/embed/" + tubeId[i] + "' frameborder='0' allowfullscreen></iframe>");
-	    		
-	    	});
-
-	    	
-
+	   
 		};
 
-		
 	});
+
+
+
+	//Pull Artist Image and Display on DOM
+
+
+	// var artistUrl = "http://api.musicgraph.com/api/v2/artist/suggest?api_key=6ec87e6f89ee9f0aee16c1f99c37e328&prefix=" + finalKeyword;
+
+	// var artistId = "";
+
+	// $.ajax({
+	// 	url: artistUrl,
+	// 	method: "GET"
+	// }).done(function(response) {
+	// 	artistId = response.data[0].id;
+		
+	// });
+
+// console.log(artistId);
+	//Pull VEVO stats and Display on DOM
+
+
 });
 
-// $("#videoId").on("click", function(event) {
-// 	    		$("#videoPlayer").html("<iframe width='350' height='197' frameborder='0' allowfullscreen id='tubePlayer'></iframe>");
-// 				$("#tubePlayer").attr("src", "https://www.youtube.com/embed/" + tubeId[0])
-// 	    	})
