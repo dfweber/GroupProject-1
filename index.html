@@ -7,6 +7,8 @@
 	<!-- Compiled and minified CSS -->
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css">
 
+  	<!-- Added link to moment.js -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 
 	<!-- <link rel="stylesheet" href="style.css"> -->
 	
@@ -14,19 +16,19 @@
 <script>
   // Initialize Firebase
   var config = {
-    apiKey: "AIzaSyA_ubIvQMN6NzlOB0B2DYFVeVAVZn2KBv0",
-    authDomain: "group-project-b3d87.firebaseapp.com",
-    databaseURL: "https://group-project-b3d87.firebaseio.com",
-    projectId: "group-project-b3d87",
-    storageBucket: "group-project-b3d87.appspot.com",
-    messagingSenderId: "83091955855"
+    apiKey: "AIzaSyDRZdo-h42H8zvnWn1oN5qzpcMt4ODUKSY",
+    authDomain: "djs-stream-dream.firebaseapp.com",
+    databaseURL: "https://djs-stream-dream.firebaseio.com",
+    projectId: "djs-stream-dream",
+    storageBucket: "djs-stream-dream.appspot.com",
+    messagingSenderId: "544163232030"
   };
   firebase.initializeApp(config);
 </script>
 
 <style>
 
-	h1 {
+	h1, h2 {
 		color: ghostwhite;
 	}
 	.ui.table td, .ui.table th {
@@ -97,6 +99,20 @@
 
 			<br>
 			<br>
+			<h2><span>Song Download History</span></h2>
+			<table class="ui red selectable celled table" style="border-top: 10px solid grey" id="histHead">
+				<thead>
+			    	<tr style="background-color: #638CA6;">
+			    		<th>Artist</th>
+				    	<th>Song Name</th>
+				    	<th>Time Downloaded</th>
+			  		</tr>
+			  	</thead>
+			  	<tbody id="histLog">
+			    	<!--Table of Aritst Searched -->
+			  	</tbody>
+			</table>	
+		
 
 			<!-- MP3 Downloader Information -->
 			<script type="text/javascript" src="http://api.convert2mp3.cc/api.js"></script>

@@ -16,41 +16,27 @@
 //Display band social media information
 
 
+var database = firebase.database();
+
+var searchKeyword = "";
+var finalKeyword = "";
+
 $("#submitBtn").on("click", function(event) {
 
 	event.preventDefault();
 
-	//Assing input value to variable
-	var searchKeyword = $("#inputValue").val().trim();
+	//Assign input value to variable
+	searchKeyword = $("#inputValue").val().trim();
 	//Concatenate string in case user adds a band name with space in between
-	var finalKeyword = searchKeyword.split(" ").join("+");
+	finalKeyword = searchKeyword.split(" ").join("+");
 
 	//Display Artist Name on DOM
 	$("#displayArtist").empty();
 	$("#videoPlayer").empty();
 	$("#displayArtist").prepend(searchKeyword +"'s ");
 
-	var newSearch = {
-    name: finalKeyword};
-	function writeNewPost(name, Keyword) {
-  // A post entry.
-	var postData = {
-    name: finalKeyword
-    };
-
-  // Get a key for a new Post.
-    var newPostKey = firebase.database().ref().child('posts').push().key;
-
-  //Write the new post's data simultaneously in the posts list and the user's post list.
-    var updates = {};
-    updates['/posts/' + newPostKey] = postData;
-    updates['/user-posts/' + uid + '/' + newPostKey] = postData;
-
-	return firebase.database().ref().update(updates);
-	}var newPostKey = firebase.database().ref().child('posts').push(newSearch.name).key;
-	
 	//assin API url to variable
-	var queryUrl = "http://api.musicgraph.com/api/v2/track/search?api_key=6ec87e6f89ee9f0aee16c1f99c37e328&artist_name=" + finalKeyword + "&limit=10";
+	var queryUrl = "http://api.musicgraph.com/api/v2/track/search?api_key=6ec87e6f89ee9f0aee16c1f99c37e328&artist_name=" + finalKeyword + "&limit=3";
 	
 	$.ajax({
 		url: queryUrl,
@@ -60,17 +46,14 @@ $("#submitBtn").on("click", function(event) {
 		$("#displayTable").empty();
 
 		//Assign input value to variable **Might not be needed here again
-		var inputValue = $("#inputValue").val().trim();
-
-		//Assign JSON band values to variables
-		//Tried using for loop but did not work
+		// var inputValue = $("#inputValue").val().trim();
 
 		var song = [];
 		var tubeId = [];
 		var album = [];
 
 		//Pull values from JSON API and add to array
-		for (var i = 0; i <= 9; i++) {
+		for (var i = 0; i <= 2; i++) {
 			song.push(response.data[i].title);
 			tubeId.push(response.data[i].track_youtube_id); 
 			album.push(response.data[i].album_title);
@@ -79,11 +62,11 @@ $("#submitBtn").on("click", function(event) {
 			$("#displayTable").append(
 				"<tr><td>" + song[i] +
 				"</td><td>" + album[i] +
-				"</td><td class='center aligned'>" + "<a href='http://www.youtube.com/watch?v=" + tubeId[i] + "' target='_self'><input id='videoId' type='image' src='playbutton.png' width='20%'></a>" +
+				"</td><td class='center aligned'>" + "<a href='http://www.youtube.com/watch?v=" + tubeId[i] + "' target='_blank'><input id='videoId' type='image' src='playbutton.png' width='20%'></a>" +
 				"</td><td class='center aligned'>" + "<button id='downloadBtn' class='ui blue button' style='background: linear-gradient(#22abe9 5%, #010304 100%)'></button>" +
 				"</td></tr>"
-
 				);
+
 			$("#downloadBtn").attr("id", "downloadBtn" + [i]);
 			$("#videoId").attr("id", "videoId" + [i]);
 
@@ -94,30 +77,40 @@ $("#submitBtn").on("click", function(event) {
 	    	t.text("Download Song");
 	    	$("#downloadBtn" + [i]).html(t);
 
-	   
+			//firebase code
+			// var count = i;
+			var songTitle = song[i];
+			// var vidId = tubeId[i];
+
+			 $("#downloadBtn" + [i]).on("click", function() {
+			  	// event.preventDefault();
+			 	
+			 		database.ref().push({
+					 searchKeyword: searchKeyword,
+					 // count: count,
+					 songTitle: songTitle,
+					 // vidId: vidId, 
+					 dateAdded: firebase.database.ServerValue.TIMESTAMP
+					 });	
+
+			 	database.ref().orderByChild("songTitle").on("child_added", function(snapshot) {
+
+			 		$("#histLog").append(
+			 	    "<tr><td> " + snapshot.val().searchKeyword + 
+			 	    "</td><td> " + snapshot.val().songTitle +
+			 	    "</td><td> " + (moment(snapshot.val().dateAdded).format("MM/DD/YY hh:mm A")) +
+			 	    "</td></tr><br>"
+
+	 	 			);
+
+			 	}, function(errorObject) {
+			 		console.log("the read failed: " + errorObject.code);
+			 	});
+				
+			});
 		};
-
+	
 	});
-
-
-
-	//Pull Artist Image and Display on DOM
-
-
-	// var artistUrl = "http://api.musicgraph.com/api/v2/artist/suggest?api_key=6ec87e6f89ee9f0aee16c1f99c37e328&prefix=" + finalKeyword;
-
-	// var artistId = "";
-
-	// $.ajax({
-	// 	url: artistUrl,
-	// 	method: "GET"
-	// }).done(function(response) {
-	// 	artistId = response.data[0].id;
-		
-	// });
-
-// console.log(artistId);
-	//Pull VEVO stats and Display on DOM
 
 
 });
