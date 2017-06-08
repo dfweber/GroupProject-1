@@ -45,9 +45,6 @@ $("#submitBtn").on("click", function(event) {
 
 		$("#displayTable").empty();
 
-		//Assign input value to variable **Might not be needed here again
-		// var inputValue = $("#inputValue").val().trim();
-
 		var song = [];
 		var tubeId = [];
 		var album = [];
@@ -62,13 +59,29 @@ $("#submitBtn").on("click", function(event) {
 			$("#displayTable").append(
 				"<tr><td>" + song[i] +
 				"</td><td>" + album[i] +
-				"</td><td class='center aligned'>" + "<a href='http://www.youtube.com/watch?v=" + tubeId[i] + "' target='_blank'><input id='videoId' type='image' src='playbutton.png' width='20%'></a>" +
+				// "</td><td class='center aligned'>" + "<a href='http://www.youtube.com/watch?v=" + tubeId[i] + "' target='_blank'><input id='videoId' type='image' src='playbutton.png' width='20%'></a>" +
+				"</td><td class='center aligned'>" + "<a href='http://www.youtube.com/watch?v=" + tubeId[i] + "?autoplay=1&showinfo=0&controls=0' frameborder='0' target='_blank' class='js-newWindow' data-popup='toolbar=no,scrollbars=yes,resizable=yes,top=70,left=400,width=440,height=300'><input id='videoId' type='image' src='playbutton.png' width='20%'></a>" +
 				"</td><td class='center aligned'>" + "<button id='downloadBtn' class='ui blue button' style='background: linear-gradient(#22abe9 5%, #010304 100%)'></button>" +
 				"</td></tr>"
 				);
-
+			
 			$("#downloadBtn").attr("id", "downloadBtn" + [i]);
 			$("#videoId").attr("id", "videoId" + [i]);
+
+			//popup code
+			$(document).ready(function(){
+            $('.js-newWindow').click(function () {
+                // event.preventDefault();
+ 
+                var $this = $(this);
+ 
+                var url = $this.attr("href");
+                var windowName = "popUp";
+                var windowSize = $this.data("popup");
+ 
+                window.open(url, windowName, windowSize);
+            	});
+        	});
 
 			//Creates download button for each song entry
 			var t = $("<a>");
@@ -78,20 +91,15 @@ $("#submitBtn").on("click", function(event) {
 	    	$("#downloadBtn" + [i]).html(t);
 
 			//firebase code
-			// var count = i;
 			var songTitle = song[i];
-			// var vidId = tubeId[i];
-
+			
 			 $("#downloadBtn" + [i]).on("click", function() {
-			  	// event.preventDefault();
-			 	
+			  	
 			 		database.ref().push({
-					 searchKeyword: searchKeyword,
-					 // count: count,
-					 songTitle: songTitle,
-					 // vidId: vidId, 
-					 dateAdded: firebase.database.ServerValue.TIMESTAMP
-					 });	
+					searchKeyword: searchKeyword,
+					songTitle: songTitle, 
+					dateAdded: firebase.database.ServerValue.TIMESTAMP
+					});	
 
 			 	database.ref().orderByChild("songTitle").on("child_added", function(snapshot) {
 
@@ -100,7 +108,6 @@ $("#submitBtn").on("click", function(event) {
 			 	    "</td><td> " + snapshot.val().songTitle +
 			 	    "</td><td> " + (moment(snapshot.val().dateAdded).format("MM/DD/YY hh:mm A")) +
 			 	    "</td></tr><br>"
-
 	 	 			);
 
 			 	}, function(errorObject) {
