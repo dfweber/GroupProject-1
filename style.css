@@ -1,0 +1,115 @@
+body {
+		background-color: #e3e3e3;
+}
+
+#displayArtist:first-letter {
+	text-transform: uppercase;
+}
+
+.header {
+	height: 100px;
+	background-color: #000;
+	/*padding: 15px 20px;*/
+	color: #fff;
+	border-bottom: 2px solid #000; 
+	background-image: url("backgroundbeat.gif");
+	background-position: 50% 265px;
+	background-size: 100px;
+	/*background-size: cover;*/
+}
+
+#logo {
+	padding-top: 30px;
+	font-family: 'Ramabhadra', sans-serif;
+	font-size: 4em;
+	font-weight: 900px;
+
+   	text-shadow: 0 1px 0 #ccc, 
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
+
+}
+
+input[type="search"] {
+    width: 60% !important;
+    padding-top: 10px;
+
+    -webkit-box-shadow: 0px 0px 48px 0px rgba(235,7,7,1);
+	-moz-box-shadow: 0px 0px 48px 0px rgba(235,7,7,1);
+	box-shadow: 0px 0px 48px 0px rgba(235,7,7,1);
+}
+
+select[type="artistOrTrack"] {
+	width: 40% !important;
+    padding-top: 10px;
+    margin: 0 auto;
+}
+
+#inputValue {
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(235,7,7,1);
+	-moz-box-shadow: 0px 0px 5px 0px rgba(235,7,7,1);
+	box-shadow: 0px 0px 5px 0px rgba(235,7,7,1);
+}
+
+.content {
+	background-color: #fff;
+}
+
+.searchArea {
+	background-image: url("djbg.jpg");
+	background-position: 50% 240px;
+	background-size: cover;
+	text-align: center;
+	margin: 0 auto;
+	padding: 45px 0px;
+	margin: 30px 60px;
+
+	-webkit-box-shadow: 0px 15px 20px -10px rgba(0,0,0,0.59);
+	-moz-box-shadow: 0px 15px 20px -10px rgba(0,0,0,0.59);
+	box-shadow: 0px 15px 20px -10px rgba(0,0,0,0.59);
+}
+
+
+#searchText {
+	color: #fff;
+   	-webkit-text-stroke: 1px #000;
+	font-family: sans-serif;
+	font-size: 32px;
+	font-weight: 900;
+}
+
+.displayArea {
+	margin: 0px 60px;
+}
+
+button[type="submit"] {
+	width: 200px;
+}
+
+.displayTable {
+	background-color: #f9f9f9;
+}
+
+.histLog {
+	background-color: #f9f9f9;
+}
+
+#histHead {
+	-webkit-box-shadow: 0px 1px 13px 3px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 1px 13px 3px rgba(0,0,0,0.75);
+box-shadow: 0px 1px 13px 3px rgba(0,0,0,0.75);
+}
+
+#displayHeader {
+	-webkit-box-shadow: 0px 1px 13px 3px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 1px 13px 3px rgba(0,0,0,0.75);
+box-shadow: 0px 1px 13px 3px rgba(0,0,0,0.75);
+}

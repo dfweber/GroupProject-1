@@ -10,47 +10,31 @@
   	<!-- Added link to moment.js -->
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 
-	<!-- <link rel="stylesheet" href="style.css"> -->
+	<!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Palanquin+Dark:700" rel="stylesheet">
+		
+	<link rel="stylesheet" href="style.css">
 	
-<script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyDRZdo-h42H8zvnWn1oN5qzpcMt4ODUKSY",
-    authDomain: "djs-stream-dream.firebaseapp.com",
-    databaseURL: "https://djs-stream-dream.firebaseio.com",
-    projectId: "djs-stream-dream",
-    storageBucket: "djs-stream-dream.appspot.com",
-    messagingSenderId: "544163232030"
-  };
-  firebase.initializeApp(config);
-</script>
-
-<style>
-
-	h1, h2 {
-		color: ghostwhite;
-	}
-	.ui.table td, .ui.table th {
-	    background-color: rgba(42, 66, 31, 0.31);
-	}
-
-	.ui.table thead th {
-		background: rgba(174, 160, 179, 0.24);
-	}
-
-</style>
-
+	<script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
 </head>
-<body style="background-color: darkgrey;">
-	<div style="background-image: url('Titanium.jpg'); padding-left: 15px; padding-right: 15px;" class="ui container">
-			<h1>DJ's Stream Dream</h1>
+<body>
+	<div class="header">
+		<div class="ui container">
+			<!-- <h1 id="logo"><i class="music icon"></i> DJ Stream Dream</h1> -->
+		</div>
+	</div>
+	<div class="ui container content">
+		<div class="ui container center aligned">
+			<h1 id="logo"><i class="music icon"></i> DJ Stream Dream <i class="music icon"></i></h1>
+		</div>
 			<br>
+		<div class="searchArea">
 			<form class="ui form">
 				<div class="field">
-            		<input type="search" placeholder="Enter song or artist" id="inputValue">
+					<label class="center aligned"><h1 id="searchText">Enter Artist or Song Name:</h1></label>
+            		<input type="search" placeholder="Enter song or artist" id="inputValue" size="45">
             	</div>
-				<div class="inline fields">
+				<!-- <div class="inline fields">
 					<label>Search By:</label>
 					<div class="field">
 						<div class="ui radio checkbox">
@@ -64,28 +48,38 @@
 					        <label>Song</label>
 					    </div>
 					</div>
+				</div> -->
+
+
+				<div class="ui form">
+				  	<div class="field">
+					    <label class="center aligned"><h4 id="searchText">Select:</h4></label>
+					    <select id="artistOrSong" type="artistOrTrack" class="ui search dropdown">
+					      	<option value="0">Artist</option>
+					    	<option value="1">Track</option>
+						</select>
+					</div>
 				</div>
-            	<br>
+
             	<br>
             	<div class="field">
-					<button type="submit" class="ui red button" style="background: linear-gradient(#e80b0b 28%, #010304 115%)" id="submitBtn">Search</button>
+					<button type="submit" class="ui red button" id="submitBtn">Search</button>
         		</div>
 			</form>
+		</div>
 			<br>
 			
 
 			<br>
-			<span id="artistImage"></span>
-			<br>
-			<br>
+			<div class="displayArea">
 			<div class="ui container">
 				<h1><span id="displayArtist"></span> Top 10 Songs</h1>
 				<div class="newTest"></div>
 			</div>
 			
-			<table class="ui red selectable celled table" style="border-top: 10px solid #DB2828" id="displayHeader">
+			<table class="ui red selectable celled table displayArea" id="displayHeader">
 				<thead>
-			    	<tr style="background-color: #638CA6;">
+			    	<tr>
 			    		<th>Song Name</th>
 				    	<th>Album</th>
 				    	<th>Click to Watch on YouTube</th>
@@ -98,25 +92,26 @@
 			</table>
 
 			<br>
-			<br>
 			<h2><span>Song Download History</span></h2>
-			<table class="ui red selectable celled table" style="border-top: 10px solid grey" id="histHead">
+			<table class="ui red selectable celled table" id="histHead">
 				<thead>
-			    	<tr style="background-color: #638CA6;">
+			    	<tr>
 			    		<th>Artist</th>
 				    	<th>Song Name</th>
-				    	<th>Time Downloaded</th>
+				    	<th>Date and Time Downloaded</th>
 			  		</tr>
 			  	</thead>
 			  	<tbody id="histLog">
 			    	<!--Table of Aritst Searched -->
 			  	</tbody>
-			</table>	
+			</table>
+			<br>
+			<br>
+			</div>	
 		
 
 			<!-- MP3 Downloader Information -->
 			<script type="text/javascript" src="http://api.convert2mp3.cc/api.js"></script>
-			<!-- <button><a class="c2m3" href="javascript:convert2mp3('vVXIK1xCRpY')">Audioslave - Cochise - Download Now</a></button> -->
 
 	</div>
 
